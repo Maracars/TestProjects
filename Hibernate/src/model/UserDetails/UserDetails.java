@@ -1,15 +1,18 @@
 package model.UserDetails;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+import javax.persistence.*;
+
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
+
+import model.address.Address;
 
 @Entity//(name="USER_DETAILS") Entitatian izena, default klasian izena
 @Table (name="USER_DETAILS") //Tablian izena
@@ -23,7 +26,13 @@ public class UserDetails {
 	// @Temporal(TemporalType.DATE edo TemporalType.TIME) 
 	//Berez timestamp moduan gordeko dau, time, date edo timestamp aukeratu leike
  	private Date joinedDate;
-	private String address;
+ 	@ElementCollection
+ 	@JoinTable(name="user_addresses", //Honek sortuko daben taulian izena finkatzen dau
+ 				joinColumns= @JoinColumn(name="user_id")) //Honek foreign keyxan izena finkatzen dau
+ 	@GenericGenerator(name="sequence", strategy="sequence")
+ 
+ 	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "sequence", type = @Type(type="long"))
+	private Collection<Address> listOfAddresses = new ArrayList<Address>();
 	private String description; 
 	
 	
@@ -35,11 +44,12 @@ public class UserDetails {
 	public void setJoinedDate(Date joinedDate) {
 		this.joinedDate = joinedDate;
 	}
-	public String getAddress() {
-		return address;
+
+	public Collection<Address> getListOfAddresses() {
+		return listOfAddresses;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setListOfAddresses(Collection<Address> listOfAddresses) {
+		this.listOfAddresses = listOfAddresses;
 	}
 	@Transient
 
