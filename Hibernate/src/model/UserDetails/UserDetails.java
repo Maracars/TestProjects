@@ -3,8 +3,6 @@ package model.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.*;
 
@@ -26,7 +24,7 @@ public class UserDetails {
 	// @Temporal(TemporalType.DATE edo TemporalType.TIME) 
 	//Berez timestamp moduan gordeko dau, time, date edo timestamp aukeratu leike
  	private Date joinedDate;
- 	@ElementCollection
+ 	@ElementCollection//(fetch=FetchType.EAGER)Eager jarri ezkero bajatzeko orduan dana gordetzen dau, ez bakarrik lehenengo kapia
  	@JoinTable(name="user_addresses", //Honek sortuko daben taulian izena finkatzen dau
  				joinColumns= @JoinColumn(name="user_id")) //Honek foreign keyxan izena finkatzen dau
  	@GenericGenerator(name="sequence", strategy="sequence")
