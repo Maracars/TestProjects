@@ -1,0 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+
+//Moduluak eitterako orduan moduluan izena jartzen jako fitxategixai, beheko marra bat aurretik jarrita
+
+$roboto-slab:'Roboto Slab', serif;
+$open-sans:'Open Sans', sans-serif;
+
+body {
+	font-family: $roboto-slab;
+	font-weight:normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $roboto-slab;
+  font-weight: normal;
+}
+
+.button {
+  font-family: $roboto-slab;
+  font-weight: bold;
+}
