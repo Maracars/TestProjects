@@ -1,8 +1,7 @@
 package test.dao.City;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import dao.City.DAOCity;
@@ -29,6 +28,11 @@ public class TestDaoCity {
 		city.setState(state);
 		boolean result = DAOCity.insertCity(city);
 		assertEquals("Error insert city into database", true, result);
+	}
+	@Test
+	public void testLoadAllCities() {
+		assertNotNull("Error load all cities from database",DAOCity.loadAllCities());
+
 	}
 	@Test
 	public void testInsertNullTerminalIntoDB() {

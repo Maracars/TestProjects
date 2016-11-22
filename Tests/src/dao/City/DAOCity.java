@@ -1,5 +1,9 @@
 package dao.City;
 
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -56,6 +60,22 @@ public class DAOCity {
 		}
 		
 		return true;
+	}
+
+	public static List<City> loadAllCities() {
+		List<City> cityList = null;
+		try {
+			before();
+		  @SuppressWarnings("unchecked")
+			TypedQuery<City> query = session.createQuery("from City");
+			cityList = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		after();
+
+		
+		return cityList;
 	}
 
 

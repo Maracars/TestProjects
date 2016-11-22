@@ -1,5 +1,9 @@
 package dao.State;
 
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -56,6 +60,21 @@ public class DAOState {
 		}
 		
 		return true;
+	}
+	public static List<State> loadAllStates() {
+		List<State> stateList = null;
+		try {
+			before();
+		  @SuppressWarnings("unchecked")
+			TypedQuery<State> query = session.createQuery("from State");
+			stateList = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		after();
+
+		
+		return stateList;
 	}
 
 

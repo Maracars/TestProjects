@@ -1,0 +1,35 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.username">joanes</property>
+        <property name="hibernate.connection.password">1234</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/hibernatedb</property>
+
+
+
+        <property name="connection_pool_size">1</property>
+
+        <property name="hbm2ddl.auto">create</property>
+        
+        <!-- Hibernatek sortzen daben sql dana printeau -->
+        <property name="show_sql">true</property>
+
+
+
+       <mapping class="dao.Gate.DAOGate"/>
+       <mapping class="model.Gate.Gate"/>
+       <mapping class="dao.Terminal.DAOTerminal"/>
+       <mapping class="model.Terminal.Terminal"/>
+       <mapping class="dao.State.DAOState"/>
+       <mapping class="model.State.State"/>
+       <mapping class="dao.City.DAOCity"/>
+       <mapping class="model.City.City"/>
+
+
+    </session-factory>
+</hibernate-configuration>

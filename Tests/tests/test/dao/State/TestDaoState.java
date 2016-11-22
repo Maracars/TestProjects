@@ -21,7 +21,11 @@ public class TestDaoState {
 	public void testInsertStateIntoDBSendingNullAsParameter() {
 		assertEquals("Error insert gate into database", false, DAOState.insertState(null));
 	}
+	@Test
+	public void testLoadAllStates() {
+		assertNotNull("Error load all states from database",DAOState.loadAllStates());
 
+	}
 	
 
 	@Test
