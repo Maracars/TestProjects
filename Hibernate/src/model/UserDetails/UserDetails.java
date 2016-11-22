@@ -8,9 +8,12 @@ import javax.persistence.*;
 
 import org.hibernate.annotations.CollectionId;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
 
 import model.address.Address;
+import model.vehicle.Vehicle;
 
 @Entity//(name="USER_DETAILS") Entitatian izena, default klasian izena
 @Table (name="USER_DETAILS") //Tablian izena
@@ -32,10 +35,21 @@ public class UserDetails {
  	@CollectionId(columns = { @Column(name="ADDRESS_ID") }, generator = "sequence", type = @Type(type="long"))
 	private Collection<Address> listOfAddresses = new ArrayList<Address>();
 	private String description; 
+	@OneToMany(cascade = CascadeType.PERSIST)//Honekin persist funtzinua erabiltzian azpiko objetu danak gordetzen dia
+	@JoinTable(joinColumns=@JoinColumn(name="USER_ID"),
+			inverseJoinColumns=@JoinColumn(name="VEHICLE_ID")
+	)
+	@NotFound(action=NotFoundAction.IGNORE)
+	private Collection<Vehicle> vehicle = new ArrayList<>();
 	
 	
 	
-	
+	public Collection<Vehicle> getVehicle() {
+		return vehicle;
+	}
+	public void setVehicle(Collection<Vehicle> vehicle) {
+		this.vehicle = vehicle;
+	}
 	public Date getJoinedDate() {
 		return joinedDate;
 	}
