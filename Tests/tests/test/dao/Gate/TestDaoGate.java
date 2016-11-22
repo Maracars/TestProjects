@@ -2,41 +2,49 @@ package test.dao.Gate;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+
+import dao.Gate.DAOGate;
+import model.Gate.Gate;
 
 public class TestDaoGate {
 
-	DaoGate daoGate;
-	
-	@Before
-	public void setup() {
-		daoGate = new DaoGate();
-	}
 
 	@Test
 	public void testInsertGateIntoDB() {
 		Gate gate = new Gate();
-		gate.setGateNumber(3);
-		gate.setTerminal(terminal);
-		int result = daoGate.insertGate(gate);
-		assertEquals("Error insert gate into database", 1, result);
+		gate.setNumber(3);
+		boolean result = DAOGate.insertGate(gate);
+		assertEquals("Error insert gate into database", true, result);
+	}
+	@Test
+	public void testInsertGateIntoDBSendingNullAsParameter() {
+		assertEquals("Error insert gate into database", false, DAOGate.insertGate(null));
 	}
 
-	@Test
+	@Ignore
 	public void testLoadAllGatesFromOneSpecificTerminal() {
 		int terminalId = 1;
 		ArrayList<Gate> gateList;
-		gateList = daoGate.loadAllGatesFromTerminal(terminalId);
+		gateList = DAOGate.loadAllGatesFromTerminal(terminalId);
 		assertNotNull("Error getting all gates of a terminal from database", gateList);
 	}
 
 	@Test
 	public void testRemoveOneSpecificGate() {
 		Gate gate = new Gate();
-		gate.setGateId(1);
-		int result = daoGate.removeGate(gate.getGateId()); // aukeran Gate bidaldu edo gateId
-		assertEquals("Error removing one gate from database", 1, result);
+		gate.setId(1);
+		boolean result = DAOGate.deleteGate(gate);
+		assertEquals("Error removing one gate from database", true, result);
+	}
+	@Test
+	public void testRemoveOneSpecificGateSendingNullAsParameter() {
+
+		assertEquals("Error removing one gate from database", false, DAOGate.deleteGate(null));
 	}
 
 }
