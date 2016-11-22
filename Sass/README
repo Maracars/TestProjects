@@ -1,0 +1,31 @@
+NODE INSTALATU
+
+GLOBALKI INSTALATU GULP
+npm install -g gulp 
+
+PACKAGE.JSON bat sortu proiektuko datuekin, horretarako hurrengo komandua erabiltzen da:
+
+npm init
+
+PROIEKTUKO TOKIRA JUAN ETA INSTALATU LOKALKI
+
+npm install --save-dev gulp
+
+PROIEKTU JAKIN HONETAN HIRU MODULU ERABILIKO DIA:
+	*GULP (default)
+	*RENAME(izena aldatzeko)
+	*CLEAN-CSS(css-a minifikatzeko)
+	*SASS(.scss edo .sass-ak css bihurtzeko)
+
+Erabiliko dian moduluak instalau
+
+npm install gulp-clean-css --save-dev // CLEANCSS
+npm install gulp-rename --save-dev //rename
+npm install gulp-sass --save-dev
+
+
+gulpfile.js sortu proiektuan root-ian
+
+
+
+
