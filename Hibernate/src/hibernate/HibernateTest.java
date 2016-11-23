@@ -8,6 +8,8 @@ import org.hibernate.cfg.Configuration;
 
 import model.UserDetails.UserDetails;
 import model.address.Address;
+import model.vehicle.FourWheeler;
+import model.vehicle.TwoWheeler;
 import model.vehicle.Vehicle;
 
 public class HibernateTest {
@@ -26,8 +28,13 @@ public class HibernateTest {
 		
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("JAJA");
-		Vehicle vehicle2 = new Vehicle();
+		TwoWheeler vehicle2 = new TwoWheeler();
 		vehicle2.setVehicleName("Beikel2");
+		vehicle2.setSteeringHandle("Bike steering handle");
+		
+		FourWheeler vehicle3 = new FourWheeler();
+		vehicle3.setVehicleName("Beikel3");
+		vehicle3.setSteeringWheel("Porsche steering wheel");
 		
 		UserDetails user = new UserDetails();
 		@SuppressWarnings("resource")
@@ -49,7 +56,10 @@ public class HibernateTest {
 //			session.save(vehicle);
 //			session.save(vehicle2);
 //			session.save(user);
-			session.persist(user);//Hau erabili ezkero ez dago azpiko objetu danak gordetzeko biharrik
+			//session.persist(user);//Hau erabili ezkero ez dago azpiko objetu danak gordetzeko biharrik
+			session.save(vehicle);
+			session.save(vehicle2);
+			session.save(vehicle3);
 			session.getTransaction().commit();
 		}catch(Exception e){
 			session.getTransaction().rollback();

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import dao.City.DAOCity;
-import dao.Terminal.DAOTerminal;
 import model.City.City;
 import model.State.State;
 
@@ -35,20 +34,20 @@ public class TestDaoCity {
 
 	}
 	@Test
-	public void testInsertNullTerminalIntoDB() {
-		assertEquals("Error insert city into database", false, DAOTerminal.insertTerminal(null));
+	public void testInsertNullCityIntoDB() {
+		assertEquals("Error insert city into database", false, DAOCity.insertCity(null));
 	}
 
 
 	@Test
-	public void testRemoveOneSpecificTerminal() {
+	public void testRemoveOneSpecificCity() {
 		City city = new City();
 		city.setId(1);
 		boolean result = DAOCity.deleteCity(city); // aukeran Terminal bidaldu edo terminalId
 		assertEquals("Error removing one city from database", true, result);
 	}
 	@Test
-	public void testRemoveOneNullTerminal() {
+	public void testRemoveOneNullCity() {
 		assertEquals("Error removing one city from database", false, DAOCity.deleteCity(null));
 	}
 

@@ -29,6 +29,8 @@
        <mapping class="model.State.State"/>
        <mapping class="dao.City.DAOCity"/>
        <mapping class="model.City.City"/>
+       <mapping class="dao.PlaneMaker.DAOPlaneMaker"/>
+       <mapping class="model.PlaneMaker.PlaneMaker"/>
 
 
     </session-factory>
