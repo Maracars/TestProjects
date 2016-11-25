@@ -1,3 +1,10 @@
+
+//Bihar dan konfigurazinua config.js fitxategixan dago, biharren arabera aldatu
+var config = require('./config');
+
+var pg = require('pg');
+
+
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -5,13 +12,26 @@ var io = require('socket.io')(server);
 
 //Hau berez ez zan hola ingo, bakarrik probarako
 
+app.use(express.static('public'));
 
 
-app.use(express.static('public'))
+var pool = new pg.Pool(config.db);
 
-app.get('/hello', function(req, res){
-	res.status(200).send("Hello world!");
+pool.connect( function(err, client) {
+  if(err) {
+    console.log(err);
+  }
+  client.on('notification', function(msg) {
+
+  	
+    console.log(msg);
+
+  	io.sockets.emit('notification', {text: msg.payload});
+
+  });
+  var query = client.query("LISTEN delayNotify");
 });
+
 
 io.on('connection', function(socket) {
 	console.log("batenbat konektau in da");
@@ -19,6 +39,7 @@ io.on('connection', function(socket) {
 	socket.on('new-message', function(data){
 
 		//Honekin konektauta daren danei esaten dotze
+		console.log(data);
 		io.sockets.emit('notification', data);
 
 	});

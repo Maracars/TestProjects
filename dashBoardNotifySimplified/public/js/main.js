@@ -8,30 +8,23 @@ socket.on('notification', function(data){
 function render (data) {
 
 	//for batekin ein leike baina honekin garbixaua geratzen da
-	var notify = $.notify(`<strong>${data.text}</strong> Do not close this page...`, {
+	var notify = $.notify(`<strong>${data.text}</strong> ek zerbait aldatu dau`, {
 	type: 'success',
-	allow_dismiss: false,
-	showProgressbar: true
+	offset: {
+		x: 50,
+		y: 50
+	},
+	animate: {
+		enter: 'animated bounceInDown',
+		exit: 'animated lightSpeedOut'
+	}
 });
 
-setTimeout(function() {
+/*setTimeout(function() {
 	notify.update('message', `<strong>${data.text}</strong> Page Data.`);
-}, 1000);
+}, 1000);*/
 
-setTimeout(function() {
-	notify.update('message', `<strong>${data.text}</strong> User Data.`);
-}, 2000);
 
-setTimeout(function() {
-	notify.update('message', `<strong>${data.text}</strong> Profile Data.`);
-}, 3000);
-
-setTimeout(function() {
-	notify.update('message', `<strong>${data.text}</strong> for errors.`);
-}, 4000);
-setTimeout(function() {
-	notify.update('message', `<strong>Txanpi</strong> mongolo.`);
-}, 5000);
 
 }
 
